@@ -10,224 +10,206 @@
   <!--href="https://dev-space.hjhx.cn/8e9d88d5-a52d-40e5-9851-9e47d6e35cee/8e9d88d5-a52d-40e5-9851-9e47d6e35cee.jpg">-->
   <title>小雨视频</title>
   <style>
-  * {
-    padding: 0;
-    margin: 0;
-  }
+    * {
+      padding: 0;
+      margin: 0;
+    }
 
-  #app {
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
-    padding-top: 5px;
-  }
+    #app {
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      padding-top: 5px;
+    }
 
-  span, ul {
-    user-select: none;
-  }
+    span,
+    ul {
+      user-select: none;
+    }
 
-  .api-select {
-    width: 500px;
-    height: 30px;
-    line-height: 30px;
-    border: 4px solid #fff;
-    border-radius: 3px;
-    position: relative;
-    margin: auto;
-  }
+    .api-select {
+      width: 500px;
+      height: 30px;
+      line-height: 30px;
+      border: 4px solid #fff;
+      border-radius: 3px;
+      position: relative;
+      margin: auto;
+    }
 
-  .api-select input {
-    width: 400px;
-    height: 30px;
-    border: none;
-    outline: none;
-    text-indent: 1em;
-    position: absolute;
-  }
+    .api-select input {
+      width: 400px;
+      height: 30px;
+      border: none;
+      outline: none;
+      text-indent: 1em;
+      position: absolute;
+    }
 
-  .api-select .apiList {
-    position: absolute;
-    right: 0;
-    width: 100px;
-    line-height: 30px;
-    text-align: center;
-    overflow-x: hidden;
-  }
+    .api-select .apiList {
+      position: absolute;
+      right: 0;
+      width: 100px;
+      line-height: 30px;
+      text-align: center;
+      overflow-x: hidden;
+    }
 
-  .api-select .apiList span {
-    display: block;
-    cursor: pointer;
-    position: relative;
-    border-left: 2px solid black;
-    background-color: #fff;
-  }
+    .api-select .apiList span {
+      display: block;
+      cursor: pointer;
+      position: relative;
+      border-left: 2px solid black;
+      background-color: #fff;
+    }
 
-  .api-select .apiList span:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 11px;
-    right: 8px;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 8px solid black;
-    border-bottom: none;
-  }
+    .api-select .apiList span:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 11px;
+      right: 8px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid black;
+      border-bottom: none;
+    }
 
-  .api-select .apiList ul {
-    background-color: #fff;
-    margin-top: 4px;
-    list-style-type: none;
-    width: 120px;
-    height: 300px;
-    overflow-y: scroll;
-  }
+    .api-select .apiList ul {
+      background-color: #fff;
+      margin-top: 4px;
+      list-style-type: none;
+      width: 120px;
+      height: 300px;
+      overflow-y: scroll;
+    }
 
-  .api-select .apiList ul li {
-    cursor: pointer;
-  }
+    .api-select .apiList ul li {
+      cursor: pointer;
+    }
 
-  .api-select .apiList ul li:hover {
-    background-color: rgba(255, 0, 0, .5);
-  }
+    .api-select .apiList ul li:hover {
+      background-color: rgba(255, 0, 0, .5);
+    }
 
-  .api-select .tips {
-    position: absolute;
-    right: -20px;
-    color: #fff;
-    transform: translateX(100%);
-  }
-
+    .api-select .tips {
+      position: absolute;
+      right: -20px;
+      color: #fff;
+      transform: translateX(100%);
+    }
   </style>
 </head>
 
 <body>
-<div id="app">
-  <div class="api-select">
-    <input type="text" v-model.String="videoSrc" v-focus>
-    <div class="apiList">
-      <span @click.stop="toggleList">接口{{ getNowApiName }}</span>
-      <transition name="fade">
-        <ul v-if="isShow">
-          <li v-for="(item,index) in api" @click="selectApi(index)">接口 {{ index+1 }}</li>
-        </ul>
-      </transition>
+  <div id="app">
+    <div class="api-select">
+      <input type="text" v-model.String="videoSrc" v-focus>
+      <div class="apiList">
+        <span @click.stop="toggleList">接口{{ getNowApiName }}</span>
+        <transition name="fade">
+          <ul v-if="isShow">
+            <li v-for="(item,index) in api" @click="selectApi(index)">接口 {{ index+1 }}</li>
+          </ul>
+        </transition>
+      </div>
+      <p class="tips">{{api.length}}个接口任君选择，解析不了请切换接口</p>
     </div>
-    <p class="tips">{{api.length}}个接口任君选择，解析不了请切换接口</p>
+    <div>
+      <button @click="clickNext">下一个</button>
+      <button @click="clickPlay">播放</button>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+      <img style="height: 200px; width: 100px;"
+        src="http://hjhx-space.oss-cn-qingdao.aliyuncs.com/774988649981w12345a76318345910293021791731983/0.jpg" alt="丢失"
+        title="扫-扫，早餐到手了！">
+      <img style="height: 200px; width: 100px;"
+        src="http://hjhx-space.oss-cn-qingdao.aliyuncs.com/774988649981w12345a76318345910293021791731983/0.jpg" alt="丢失"
+        title="扫-扫，早餐到手了！">
+    </div>
+    <iframe id="videos" src="" frameborder="0" width="500px" height="500px"></iframe>
+    <!--<video id="videos" src=""></video>-->
   </div>
-  <div>
-    <button @click="clickNext">下一个</button>
-  </div>
-  <div style="display: flex; justify-content: space-between;">
-    <img style="height: 200px; width: 100px;"
-         src="http://hjhx-space.oss-cn-qingdao.aliyuncs.com/774988649981w12345a76318345910293021791731983/0.jpg"
-         alt="丢失" title="扫-扫，早餐到手了！">
-    <img style="height: 200px; width: 100px;"
-         src="http://hjhx-space.oss-cn-qingdao.aliyuncs.com/774988649981w12345a76318345910293021791731983/0.jpg"
-         alt="丢失" title="扫-扫，早餐到手了！">
-  </div>
-  <iframe id="videos" src="" frameborder="0" width="600" height="600"></iframe>
-  <!--<video id="videos" src=""></video>-->
-</div>
-<script>
+  <script>
 
-new Vue({
-  el: '#app',
-  data: {
-    api: [
-      'http://aikan-tv.com/?url=',
-      'http://api.47ks.com/webcloud/?v=',
-      'https://api.flvsp.com/?url=',
-      'http://api.nepian.com/ckparse/?url=',
-      'http://api.pucms.com/?url=',
-      'http://api.52xmw.com/?url=',
-      'http://j.zz22x.com/jx/?url=',
-      'https://www.myxin.top/jx/api/?url=',
-      'http://jx.kkqtv.com/jx/api/?url=',
-      'https://jx.618g.com/?url=',
-      'http://jx.wslmf.com/?url=',
-      'http://api.52xmw.com/?url=',
-
-      'http://000o.cc/jx/ty.php?url=',
-      'https://206dy.com/vip.php?url=',
-      'http://2gty.com/apiurl/yun.php?url=',
-      'http://65yw.2m.vc/chaojikan.php?url=',
-      'http://api.baiyug.cn/vip/index.php?url=',
-      'http://api.xfsub.com/index.php?url=',
-      'http://jiexi.92fz.cn/player/vip.php?url=',
-      'http://jx.ejiafarm.com/yun.php?url=',
-      'http://jx.ejiafarm.com/jx1/dy1.php?url=',
-      'http://jx.ejiafarm.com/dy.php?url=',
-      'http://jqaaa.com/jx.php?url=',
-      'http://mlxztz.com/player.php?url=',
-      'https://vip.hackmg.com/jx/index.php?url=',
-      'http://vip.jlsprh.com/index.php?url=',
-      'http://www.662820.com/xnflv/index.php?url=',
-      'http://www.82190555.com/index/qqvod.php?url=',
-      'http://www.82190555.com/index/qqvod.php?url=',
-      'http://www.efunfilm.com/yunparse/index.php?url=',
-      'https://api.bbbbbb.me/jx/?url=',
-      'http://yun.baiyug.cn/vip/index.php?url='
-    ],
-    nowIndex: 0,
-    videoSrc: 'https://v.qq.com/x/cover/p8bvvfh82dqrqgq.html',
-    isShow: false,
-    width: '',
-    height: '',
-  },
-  methods: {
-    toggleList: function () {
-      this.isShow = !this.isShow
-    },
-    selectApi: function (index) {
-      this.nowIndex = index
-      this.toggleList()
-    },
-    clickNext () {
-      this.nowIndex = this.nowIndex + 1
-    }
-  },
-  computed: {
-    getNowApiName: function () {
-      return this.nowIndex + 1
-    },
-    getApi: function () {
-      return this.api[this.nowIndex] + this.videoSrc
-    }
-  },
-  watch: {
-    videoSrc: function () {
-      document.getElementById('videos').src = this.getApi
-    },
-    nowIndex: function () {
-      document.getElementById('videos').src = this.getApi
-    }
-  },
-  // 自定义指令 默认聚焦
-  directives: {
-    focus: {
-      inserted: function (el) {
-        el.focus()
+    new Vue({
+      el: '#app',
+      data: {
+        api: [
+          'http://j.zz22x.com/jx/?url=',
+          'https://www.myxin.top/jx/api/?url=',
+          'https://jx.618g.com/?url=',
+          'http://jx.wslmf.com/?url=',
+          'http://jiexi.92fz.cn/player/vip.php?url=',
+          'http://jx.ejiafarm.com/dy.php?url=',
+          'http://mlxztz.com/player.php?url=',
+          'https://vip.hackmg.com/jx/index.php?url=',
+          'http://vip.jlsprh.com/index.php?url=',
+          'http://www.82190555.com/index/qqvod.php?url=',
+          'https://api.bbbbbb.me/jx/?url='
+        ],
+        nowIndex: 0,
+        videoSrc: 'https://v.youku.com/v_show/id_XMjc2NTUwMjE1Mg==.html?spm=a2h03.9268448.2115053.86',
+        isShow: false,
+        width: '',
+        height: '',
+      },
+      methods: {
+        toggleList: function () {
+          this.isShow = !this.isShow
+        },
+        selectApi: function (index) {
+          this.nowIndex = index
+          this.toggleList()
+        },
+        clickNext() {
+          this.nowIndex = this.nowIndex + 1
+        },
+        clickPlay(){
+          this.nowIndex = 0
+        }
+      },
+      computed: {
+        getNowApiName: function () {
+          return this.nowIndex + 1
+        },
+        getApi: function () {
+          return this.api[this.nowIndex] + this.videoSrc
+        }
+      },
+      watch: {
+        videoSrc: function () {
+          document.getElementById('videos').src = this.getApi
+        },
+        nowIndex: function () {
+          document.getElementById('videos').src = this.getApi
+        }
+      },
+      // 自定义指令 默认聚焦
+      directives: {
+        focus: {
+          inserted: function (el) {
+            el.focus()
+          }
+        }
+      },
+      mounted: function () {
+        let that = this
+        // 点击空白区域，列表消失
+        document.documentElement.addEventListener('click', function () {
+          that.isShow = false
+        })
+        // 计算屏幕长宽
+        this.width = ($(window).width() + 100) + 'px'
+        this.height = ($(window).height() + 100) + 'px'
+        // 打开默认播放默认视频
+        document.getElementById('videos').src = this.getApi
       }
-    }
-  },
-  mounted: function () {
-    let that = this
-    // 点击空白区域，列表消失
-    document.documentElement.addEventListener('click', function () {
-      that.isShow = false
     })
-    // 计算屏幕长宽
-    this.width = ($(window).width() + 100) + 'px'
-    this.height = ($(window).height() + 100) + 'px'
-    // 打开默认播放默认视频
-    document.getElementById('videos').src = this.getApi
-  }
-})
 
-</script>
+  </script>
 </body>
 
 </html>

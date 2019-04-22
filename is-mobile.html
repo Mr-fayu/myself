@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>手机端</title>
+  <style>
+  .container{
+    max-width: 1200px;
+    margin: 0px auto;
+  }
+
+  .container h1 {
+    font-size: 2em;
+  }
+
+  .container .text{
+    font-size: 0.9em;
+    color: #515a6e;
+  }
+
+  .download{
+    width: 100%;
+    display: table;
+    white-space: nowrap;
+    text-align: center;
+    background: 0 0;
+    font-weight: 500;
+    color: #17233d;
+    font-size: 16px;
+    margin: 16px 0;
+  }
+
+  .download:before{
+    content: "";
+    display: table-cell;
+    position: relative;
+    top: 50%;
+    width: 5%;
+    border-top: 1px solid #e8eaec;
+    transform: translateY(50%);
+  }
+
+  .download:after{
+    content: "";
+    display: table-cell;
+    position: relative;
+    top: 50%;
+    width: 95%;
+    border-top: 1px solid #e8eaec;
+    transform: translateY(50%);
+  }
+
+  .download-title{
+    padding: 0px 10px;
+    font-weight: 500;
+    color: #17233d;
+  }
+
+  a{
+    color: #2d8cf0;
+    background: 0 0;
+    text-decoration: none;
+    outline: 0;
+    cursor: pointer;
+    transition: color .2s ease;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>请使用PC登录本网站</h1>
+  </div>
+
+  <!-- 请自行完善此页面 -->
+  <script>
+
+  function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+  }
+
+  let os = getUrlParam('os')
+  if(os == ""){
+    document.getElementById("update").style.display="block"
+  }else{
+    document.getElementById(os).style.display="block"
+  }
+
+  </script>
+</body>
+</html>

@@ -282,10 +282,10 @@ var context;
 var canvasContainer;
 var htmlBounds;
 var bounds;
-var minimumStageWidth = 100;
-var minimumStageHeight = 100;
-var maxStageWidth = 400;
-var maxStageHeight = 600;
+var minimumStageWidth = 350;
+var minimumStageHeight = 350;
+var maxStageWidth = 1000;
+var maxStageHeight = 1000;
 var resizeTimeoutId = -1;
 //var stats;
 

@@ -13,13 +13,13 @@
 
   var Sakri = window.Sakri || {};
   window.Sakri = window.Sakri || Sakri;
-    
+
 	Sakri.MathUtil = {};
-	
+
 	//used for radiansToDegrees and degreesToRadians
 	Sakri.MathUtil.PI_180 = Math.PI/180;
 	Sakri.MathUtil.ONE80_PI = 180/Math.PI;
-	
+
 	//precalculations for values of 90, 270 and 360 in radians
 	Sakri.MathUtil.PI2 = Math.PI*2;
 	Sakri.MathUtil.HALF_PI = Math.PI/2;
@@ -43,12 +43,12 @@
 	Sakri.MathUtil.getRandomNumberInRange = function(min, max){
 		return min + Math.random() * (max - min);
 	};
-	
+
 	Sakri.MathUtil.getRandomIntegerInRange = function(min, max){
 		return Math.round(Sakri.MathUtil.getRandomNumberInRange(min, max));
 	};
 
-	
+
 }(window));
 
 (function (window){
@@ -85,7 +85,7 @@
     };
 
 
-    
+
 	//==================================================
 	//===================::RECTANGLE::==================
 	//==================================================
@@ -93,7 +93,7 @@
 	Sakri.Geom.Rectangle = function (x, y, width, height){
 		this.update(x, y, width, height);
 	};
-	
+
 	Sakri.Geom.Rectangle.prototype.update = function(x, y, width, height){
 		this.x = isNaN(x) ? 0 : x;
 		this.y = isNaN(y) ? 0 : y;
@@ -101,11 +101,11 @@
 		this.height = isNaN(height) ? 0 : height;
 	};
 
-  
+
 	Sakri.Geom.Rectangle.prototype.getRight = function(){
 		return this.x + this.width;
 	};
-	
+
 	Sakri.Geom.Rectangle.prototype.getBottom = function(){
 		return this.y + this.height;
 	};
@@ -122,15 +122,15 @@
         return x >= this.x && y >= this.y && x <= this.getRight() && y <= this.getBottom();
     };
 
-	
+
 	Sakri.Geom.Rectangle.prototype.clone = function(){
 		return new Sakri.Geom.Rectangle(this.x, this.y, this.width, this.height);
 	};
-	
+
 	Sakri.Geom.Rectangle.prototype.toString = function(){
 		return "Rectangle{x:"+this.x+" , y:"+this.y+" , width:"+this.width+" , height:"+this.height+"}";
 	};
-	
+
 }(window));
 
 
@@ -282,10 +282,10 @@ var context;
 var canvasContainer;
 var htmlBounds;
 var bounds;
-var minimumStageWidth = 300;
-var minimumStageHeight = 300;
-var maxStageWidth = 800;
-var maxStageHeight = 1100;
+var minimumStageWidth = 100;
+var minimumStageHeight = 100;
+var maxStageWidth = 400;
+var maxStageHeight = 600;
 var resizeTimeoutId = -1;
 //var stats;
 
